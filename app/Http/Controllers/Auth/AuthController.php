@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\AuthRequest;
-use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\Auth\StoreUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Trait\ApiResponse;
@@ -39,7 +39,7 @@ class AuthController extends Controller
             return $this->error('Invalid credentials', 401);
         }
 
-        $user = Auth::user();
+        $user = User::where('email', $request->email)->firstOrFail();
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return $this->success(

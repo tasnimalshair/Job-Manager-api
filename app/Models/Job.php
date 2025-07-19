@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Job extends Model
 {
     use SoftDeletes;
+    protected $table = "job-listings";
 
     protected $fillable = [
         'title',
         'description',
         'location',
         'type',
+        'deadline',
         'salary',
         'company',
         'category_id',

@@ -16,7 +16,16 @@ class JobController extends Controller
     use ApiResponse;
     public function index()
     {
-        return $this->success(JobResource::collection(Job::all()), 'Retrieved Successfully!');
+
+        return $this->success(JobResource::collection(Job::with()->all()), 'Retrieved Successfully!');
+    }
+
+    public function show(Job $job)
+    {
+        if ($job->created_by !== Auth::id()) {
+            return $this->error('Unauthorized user', 403);
+        }
+        return $this->success(new JobResource($job), 'Retrieved Successfully!');
     }
 
     public function store(StoreJobRequest $request)
@@ -27,9 +36,8 @@ class JobController extends Controller
         return $this->success(new JobResource($job), 'Added Successfully!', 200);
     }
 
-    public function update(UpdateJobRequest $request, $id)
+    public function update(UpdateJobRequest $request, Job $job)
     {
-        $job = Job::findOrFail($id);
         if ($job->created_by !== Auth::id()) {
             return $this->error('Unautherized user', 403);
         }
@@ -38,9 +46,8 @@ class JobController extends Controller
         return $this->success(new JobResource($job), 'Updated Successfully!', 200);
     }
 
-    public function destroy($id)
+    public function destroy(Job $job)
     {
-        $job = Job::findOrFail($id);
         if ($job->created_by !== Auth::id()) {
             return $this->error('Unautherized user', 403);
         }
