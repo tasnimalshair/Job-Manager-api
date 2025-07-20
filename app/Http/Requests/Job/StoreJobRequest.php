@@ -26,12 +26,13 @@ class StoreJobRequest extends FormRequest
             'title' => ['required', 'string', 'max:50'],
             'description' => ['required', 'string', 'min:15', 'max:250'],
             'company' => ['required', 'string'],
-            'location' => ['required', 'in:On-site,Remote'],
-            'type' => ['required', 'in:Full-time,Part-time'],
+            'location' => ['required', 'string', 'in:On-site,Remote'],
+            'type' => ['required', 'string', 'in:Full-time,Part-time'],
             'deadline' => ['required', 'date'],
             'salary' => ['required', 'numeric'],
             'category_id' => ['required', 'exists:categories,id'],
-            'created_by' => ['required', 'exists:users,id']
+            'created_by' => ['required', 'exists:users,id'],
+            'status' => ['required', 'in:active,inactive,closed']
         ];
     }
 }

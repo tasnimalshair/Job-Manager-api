@@ -48,13 +48,13 @@ class User extends Authenticatable
         ];
     }
 
-    protected function jobs()
+    public function jobs()
     {
         return $this->hasMany(Job::class);
     }
 
 
-    protected function applications()
+    public function applications()
     {
         return $this->hasMany(Application::class);
     }

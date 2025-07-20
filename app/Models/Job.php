@@ -22,12 +22,12 @@ class Job extends Model
         'created_by'
     ];
 
-    protected function applications()
+    public function applications()
     {
         return $this->hasMany(Application::class);
     }
 
-    protected function user()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

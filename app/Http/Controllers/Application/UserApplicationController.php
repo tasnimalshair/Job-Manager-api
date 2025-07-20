@@ -9,19 +9,18 @@ use App\Trait\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminApplicationController extends Controller
+class UserApplicationController extends Controller
 {
     use ApiResponse;
 
     public function index()
     {
-        $applications = Application::with('user')->get();
+        $applications = Application::where('user_id', Auth::id())->get();
         return $this->success(ApplicationResource::collection($applications), 'Retrieved Successfully!');
     }
 
-    public function filterByJob($id)
+    public function show(Application $application)
     {
-        $applications = Application::where('job_id', $id)->get();
-        return $this->success(ApplicationResource::collection($applications), 'Retrieved Successfully1');
+        return $this->success(new ApplicationResource($application), 'Retrieved Successfully!');
     }
 }

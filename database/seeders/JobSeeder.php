@@ -28,6 +28,7 @@ class JobSeeder extends Seeder
                 'salary' => 3500,
                 'category_id' => 1,
                 'created_by' => 1,
+                'status' => 'active'
             ],
             [
                 'title' => 'Junior Frontend Engineer',
@@ -39,6 +40,8 @@ class JobSeeder extends Seeder
                 'salary' => 2200,
                 'category_id' => 1,
                 'created_by' => 1,
+                'status' => 'inactive'
+
             ],
             [
                 'title' => 'DevOps Engineer',
@@ -50,6 +53,8 @@ class JobSeeder extends Seeder
                 'salary' => 5000,
                 'category_id' => 1,
                 'created_by' => 1,
+                'status' => 'closed'
+
             ],
             [
                 'title' => 'UI/UX Designer',
@@ -61,6 +66,8 @@ class JobSeeder extends Seeder
                 'salary' => 1800,
                 'category_id' => 2,
                 'created_by' => 1,
+                'status' => 'active'
+
             ],
             [
                 'title' => 'Project Manager',
@@ -72,6 +79,8 @@ class JobSeeder extends Seeder
                 'salary' => 4000,
                 'category_id' => 15,
                 'created_by' => 1,
+                'status' => 'active'
+
             ],
             [
                 'title' => 'QA Tester',
@@ -83,6 +92,8 @@ class JobSeeder extends Seeder
                 'salary' => 2000,
                 'category_id' => 1,
                 'created_by' => 1,
+                'status' => 'active'
+
             ],
             [
                 'title' => 'Mobile App Developer',
@@ -94,6 +105,8 @@ class JobSeeder extends Seeder
                 'salary' => 3800,
                 'category_id' => 1,
                 'created_by' => 1,
+                'status' => 'inactive'
+
             ],
         ];
 

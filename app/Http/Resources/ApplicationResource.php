@@ -19,7 +19,8 @@ class ApplicationResource extends JsonResource
             'job_id' => $this->job_id,
             'status' => $this->status,
             'cv_path' => $this->cv_path,
-            'coverletter' => $this->coverletter
+            'coverletter' => $this->coverletter,
+            'user' => new UserResource($this->whenLoaded('user'))
         ];
     }
 }

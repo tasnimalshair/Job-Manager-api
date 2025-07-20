@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Job;
+namespace App\Http\Controllers\Job\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Job\StoreJobRequest;
@@ -11,13 +11,13 @@ use App\Trait\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class JobController extends Controller
+class AdminJobController extends Controller
 {
     use ApiResponse;
     public function index()
     {
 
-        return $this->success(JobResource::collection(Job::with()->all()), 'Retrieved Successfully!');
+        return $this->success(JobResource::collection(Job::with('applications')->get()), 'Retrieved Successfully!');
     }
 
     public function show(Job $job)
