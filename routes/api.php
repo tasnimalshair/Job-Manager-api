@@ -42,11 +42,12 @@ Route::prefix('admin')->controller(AdminApplicationController::class)
         Route::get('/applications', 'index');
         Route::get('/jobs/{id}/applications', 'filterByJob');
     });
-    
+
 Route::prefix('user/jobs')->controller(UserOperationsController::class)
     ->middleware(['auth:sanctum', 'role:user'])
     ->group(function () {
         Route::get('filter', 'filter');
+        Route::post('{id}/apply', 'apply');
     });
 
 Route::prefix('user/jobs')->controller(UserJobController::class)

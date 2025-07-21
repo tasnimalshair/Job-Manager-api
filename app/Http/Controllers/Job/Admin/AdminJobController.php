@@ -17,7 +17,7 @@ class AdminJobController extends Controller
     public function index()
     {
 
-        return $this->success(JobResource::collection(Job::with('applications')->get()), 'Retrieved Successfully!');
+        return $this->success(JobResource::collection(Job::with('applications')->latest()->paginate(10)), 'Retrieved Successfully!');
     }
 
     public function show(Job $job)

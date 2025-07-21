@@ -15,7 +15,7 @@ class UserJobController extends Controller
 
     public function index()
     {
-        return $this->success(JobResource::collection(Job::with('applications')->where('status', 'active')->get()), 'Retrieved Successfully!');
+        return $this->success(JobResource::collection(Job::with('applications')->where('status', 'active')->latest()->paginate(10)), 'Retrieved Successfully!');
     }
 
     public function show(Job $job)

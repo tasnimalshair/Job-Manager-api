@@ -17,10 +17,11 @@ class ApplicationResource extends JsonResource
         return [
             'user_id' => $this->user_id,
             'job_id' => $this->job_id,
-            'status' => $this->status,
+            'status' => 'pending',
             'cv_path' => $this->cv_path,
             'coverletter' => $this->coverletter,
-            'user' => new UserResource($this->whenLoaded('user'))
+            'job' => new UserResource($this->whenLoaded('job')),
+            'user' => new UserResource($this->whenLoaded('user')),
         ];
     }
 }

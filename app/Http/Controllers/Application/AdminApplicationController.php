@@ -15,7 +15,7 @@ class AdminApplicationController extends Controller
 
     public function index()
     {
-        $applications = Application::with('user')->get();
+        $applications = Application::with('user')->latest()->paginate(10);
         return $this->success(ApplicationResource::collection($applications), 'Retrieved Successfully!');
     }
 

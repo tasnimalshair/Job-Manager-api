@@ -22,10 +22,7 @@ class StoreApplicationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['required', 'exists:users,id'],
-            'job_id' => ['required', 'exists:jobs,id'],
-            'status' => ['required', 'in:pending,accepted,rejected'],
-            'cv_path' => ['required', 'file', 'mimes:pdf,doc,docx'],
+            'cv_path' => ['required', 'file', 'mimes:pdf' , 'max:2048'],
             'coverletter' => ['nullable', 'string'],
         ];
     }

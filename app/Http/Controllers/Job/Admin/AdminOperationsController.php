@@ -24,6 +24,7 @@ class AdminOperationsController extends Controller
     public function toggleStatusByAdmin(UpdateStatusRequest $request, Job $job)
     {
         $job->status = $request->status;
+        // Here send acception email for user
         $job->save();
         return $this->successMessage('Status updated successfully!');
     }
