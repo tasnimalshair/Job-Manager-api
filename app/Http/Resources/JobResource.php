@@ -26,7 +26,8 @@ class JobResource extends JsonResource
             'created_by' => $this->created_by,
             'category' => $this->whenLoaded('category'),
             'status' => $this->status,
-            'applications' => $this->whenLoaded('applications')
+            'applications' => $this->whenLoaded('applications'),
+            'user' => $this->whenLoaded('user'),
         ];
     }
 }

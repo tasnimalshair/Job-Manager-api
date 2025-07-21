@@ -41,6 +41,7 @@ Route::prefix('admin')->controller(AdminApplicationController::class)
     ->group(function () {
         Route::get('/applications', 'index');
         Route::get('/jobs/{id}/applications', 'filterByJob');
+        Route::get('/applications/{application}/accept', 'acceptApplication');
     });
 
 Route::prefix('user/jobs')->controller(UserOperationsController::class)
