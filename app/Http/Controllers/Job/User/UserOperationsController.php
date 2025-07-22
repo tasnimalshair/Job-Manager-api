@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Job\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Application\StoreApplicationRequest;
-use App\Http\Requests\Job\FilterByLocationRequest;
-use App\Http\Requests\Job\FilterByTypeRequest;
 use App\Http\Requests\Job\FilterJobRequest;
 use App\Http\Resources\ApplicationResource;
 use App\Http\Resources\JobResource;
@@ -41,8 +39,9 @@ class UserOperationsController extends Controller
             'user_id' => $user_id,
             'job_id' => $job->id,
             'cv_path' => $cv_url,
-            'coverletter' => $request->coverletter
+            'coverletter' => $request->coverletter,
         ]);
+
         return $this->success(new ApplicationResource($application), 'Added Successfully!');
     }
 
@@ -64,12 +63,13 @@ class UserOperationsController extends Controller
         if ($request->filled('q')) {
             $keyword = $request->q;
             $query->where(function ($q) use ($keyword) {
-                $q->where('title', 'LIKE', '%' . $keyword . '%')
-                    ->orWhere('description', 'LIKE', '%' . $keyword . '%');
+                $q->where('title', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('description', 'LIKE', '%'.$keyword.'%');
             });
         }
 
         $jobs = $query->get();
+
         return $this->success(JobResource::collection($jobs), 'Filtered Successfully!');
     }
 }

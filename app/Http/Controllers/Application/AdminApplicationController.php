@@ -8,8 +8,6 @@ use App\Http\Resources\ApplicationResource;
 use App\Models\Application;
 use App\Notifications\ApplicationAcceptedMail;
 use App\Trait\ApiResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AdminApplicationController extends Controller
 {
@@ -18,6 +16,7 @@ class AdminApplicationController extends Controller
     public function index()
     {
         $applications = Application::with('user')->latest()->paginate(10);
+
         return $this->success(ApplicationResource::collection($applications), 'Retrieved Successfully!');
     }
 
@@ -30,12 +29,14 @@ class AdminApplicationController extends Controller
         if ($request->status === 'accepted') {
             $application->user->notify(new ApplicationAcceptedMail($application));
         }
+
         return $this->successMessage('Status updated successfully!');
     }
 
     public function filterByJob($id)
     {
         $applications = Application::where('job_id', $id)->get();
+
         return $this->success(ApplicationResource::collection($applications), 'Retrieved Successfully1');
     }
 }

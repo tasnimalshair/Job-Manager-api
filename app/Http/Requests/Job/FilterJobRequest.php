@@ -25,7 +25,7 @@ class FilterJobRequest extends FormRequest
             'type' => ['nullable', 'string', 'in:Full-time,Part-time'],
             'location' => ['nullable', 'string', 'in:On-site,Remote'],
             'category_id' => ['nullable', 'exists:categories,id'],
-            'q' => ['nullable', 'string', 'max:255']
+            'q' => ['nullable', 'string', 'max:255'],
         ];
     }
 }

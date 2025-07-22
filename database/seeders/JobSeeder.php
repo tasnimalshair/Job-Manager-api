@@ -28,7 +28,7 @@ class JobSeeder extends Seeder
                 'salary' => 3500,
                 'category_id' => 1,
                 'created_by' => 1,
-                'status' => 'active'
+                'status' => 'active',
             ],
             [
                 'title' => 'Junior Frontend Engineer',
@@ -40,7 +40,7 @@ class JobSeeder extends Seeder
                 'salary' => 2200,
                 'category_id' => 1,
                 'created_by' => 1,
-                'status' => 'inactive'
+                'status' => 'inactive',
 
             ],
             [
@@ -53,7 +53,7 @@ class JobSeeder extends Seeder
                 'salary' => 5000,
                 'category_id' => 1,
                 'created_by' => 1,
-                'status' => 'closed'
+                'status' => 'closed',
 
             ],
             [
@@ -66,7 +66,7 @@ class JobSeeder extends Seeder
                 'salary' => 1800,
                 'category_id' => 2,
                 'created_by' => 1,
-                'status' => 'active'
+                'status' => 'active',
 
             ],
             [
@@ -79,7 +79,7 @@ class JobSeeder extends Seeder
                 'salary' => 4000,
                 'category_id' => 15,
                 'created_by' => 1,
-                'status' => 'active'
+                'status' => 'active',
 
             ],
             [
@@ -92,7 +92,7 @@ class JobSeeder extends Seeder
                 'salary' => 2000,
                 'category_id' => 1,
                 'created_by' => 1,
-                'status' => 'active'
+                'status' => 'active',
 
             ],
             [
@@ -105,7 +105,7 @@ class JobSeeder extends Seeder
                 'salary' => 3800,
                 'category_id' => 1,
                 'created_by' => 1,
-                'status' => 'inactive'
+                'status' => 'inactive',
 
             ],
         ];

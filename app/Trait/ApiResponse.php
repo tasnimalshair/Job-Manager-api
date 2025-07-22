@@ -4,7 +4,6 @@ namespace App\Trait;
 
 trait ApiResponse
 {
-
     protected function successMessage($message = 'Success', $status = 200)
     {
         return response()->json([

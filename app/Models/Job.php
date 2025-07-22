@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Job extends Model
 {
-    use SoftDeletes;
-    protected $table = "job-listings";
+    use HasFactory, SoftDeletes;
+
+    protected $table = 'job-listings';
 
     protected $fillable = [
         'title',
@@ -19,7 +21,7 @@ class Job extends Model
         'salary',
         'company',
         'category_id',
-        'created_by'
+        'created_by',
     ];
 
     public function applications()
@@ -30,5 +32,11 @@ class Job extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function hasApplied(User $user)
+    {
+        return $this->applications()
+            ->where('user_id', $user->id)->exists();
     }
 }

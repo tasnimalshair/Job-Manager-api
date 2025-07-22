@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Job;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
 class StoreJobRequest extends FormRequest
 {
@@ -32,7 +31,7 @@ class StoreJobRequest extends FormRequest
             'salary' => ['required', 'numeric'],
             'category_id' => ['required', 'exists:categories,id'],
             'created_by' => ['required', 'exists:users,id'],
-            'status' => ['required', 'in:active,inactive,closed']
+            'status' => ['required', 'in:active,inactive,closed'],
         ];
     }
 }

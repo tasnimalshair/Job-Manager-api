@@ -8,7 +8,6 @@ use App\Http\Requests\Auth\StoreUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Trait\ApiResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,7 +25,7 @@ class AuthController extends Controller
         return $this->success(
             [
                 'user' => new UserResource($user),
-                'token' => $token
+                'token' => $token,
             ],
             'Registered Successfully!'
         );
@@ -35,7 +34,7 @@ class AuthController extends Controller
     public function login(AuthRequest $request)
     {
         $data = $request->validated();
-        if (!Auth::attempt($data)) {
+        if (! Auth::attempt($data)) {
             return $this->error('Invalid credentials', 401);
         }
 
@@ -45,7 +44,7 @@ class AuthController extends Controller
         return $this->success(
             [
                 'user' => new UserResource($user),
-                'token' => $token
+                'token' => $token,
             ],
             'Logged Successfully!'
         );

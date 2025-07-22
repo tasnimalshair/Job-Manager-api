@@ -8,18 +8,18 @@ use App\Http\Requests\Job\UpdateJobRequest;
 use App\Http\Resources\JobResource;
 use App\Models\Job;
 use App\Trait\ApiResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminJobController extends Controller
 {
     use ApiResponse;
+
     public function index()
     {
 
         return $this->success(
             JobResource::collection(Job::with('applications', 'user')
-            ->latest()->paginate(10)), 'Retrieved Successfully!');
+                ->latest()->paginate(10)), 'Retrieved Successfully!');
     }
 
     public function show(Job $job)
@@ -27,6 +27,7 @@ class AdminJobController extends Controller
         if ($job->created_by !== Auth::id()) {
             return $this->error('Unauthorized user', 403);
         }
+
         return $this->success(new JobResource($job), 'Retrieved Successfully!');
     }
 
@@ -35,7 +36,8 @@ class AdminJobController extends Controller
         $data = $request->validated();
         $data['created_by'] = Auth::id();
         $job = Job::create($data);
-        return $this->success(new JobResource($job), 'Added Successfully!', 200);
+
+        return $this->success(new JobResource($job), 'Added Successfully!', 201);
     }
 
     public function update(UpdateJobRequest $request, Job $job)
@@ -45,6 +47,7 @@ class AdminJobController extends Controller
         }
         $data = $request->validated();
         $job->update($data);
+
         return $this->success(new JobResource($job), 'Updated Successfully!', 200);
     }
 
@@ -54,6 +57,7 @@ class AdminJobController extends Controller
             return $this->error('Unautherized user', 403);
         }
         $job->delete();
+
         return $this->successMessage('Deleted Successfully!', 200);
     }
 }

@@ -22,7 +22,7 @@ class UpdateStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => ['required', 'in:active,inactive,closed']
+            'status' => ['required', 'in:active,inactive,closed'],
         ];
     }
 }

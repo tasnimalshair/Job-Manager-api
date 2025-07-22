@@ -5,11 +5,7 @@ namespace App\Http\Controllers\Job\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Job\UpdateStatusRequest;
 use App\Models\Job;
-use App\Models\User;
-use App\Notifications\ApplicationAcceptedMail;
 use App\Trait\ApiResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class AdminOperationsController extends Controller
@@ -22,6 +18,7 @@ class AdminOperationsController extends Controller
             $job->status = 'closed';
             $job->save();
         }
+
         return $this->successMessage('Status closed');
     }
 
@@ -34,9 +31,10 @@ class AdminOperationsController extends Controller
             'Status updated successfully!',
             [
                 'old_status' => $old_status,
-                'updated_status' => $request->status
+                'updated_status' => $request->status,
             ]
         );
+
         return $this->successMessage('Status updated successfully!');
     }
 }

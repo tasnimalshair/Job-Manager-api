@@ -7,7 +7,6 @@ use App\Http\Controllers\Job\Admin\AdminJobController;
 use App\Http\Controllers\Job\Admin\AdminOperationsController;
 use App\Http\Controllers\Job\User\UserJobController;
 use App\Http\Controllers\Job\User\UserOperationsController;
-use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +14,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-## Auth
+// # Auth
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
@@ -48,7 +47,7 @@ Route::prefix('user/jobs')->controller(UserOperationsController::class)
     ->middleware(['auth:sanctum', 'role:user'])
     ->group(function () {
         Route::get('filter', 'filter');
-        Route::post('{id}/apply', 'apply');
+        Route::post('{job}/apply', 'apply');
     });
 
 Route::prefix('user/jobs')->controller(UserJobController::class)
@@ -58,11 +57,10 @@ Route::prefix('user/jobs')->controller(UserJobController::class)
         Route::get('/{job}', 'show');
     });
 
-
-
 Route::prefix('user/applications')->controller(UserApplicationController::class)
     ->middleware(['auth:sanctum', 'role:user'])
     ->group(function () {
         Route::get('/', 'index');
         Route::get('/{application}', 'show');
+        Route::delete('/{application}', 'destroy');
     });

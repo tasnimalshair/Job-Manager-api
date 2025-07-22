@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use App\Models\Application;
-use App\Models\Job;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -12,6 +11,7 @@ use Illuminate\Notifications\Notification;
 class ApplicationAcceptedMail extends Notification implements ShouldQueue
 {
     use Queueable;
+
     protected $application;
 
     /**
@@ -39,13 +39,13 @@ class ApplicationAcceptedMail extends Notification implements ShouldQueue
     {
         return (new MailMessage)
             ->subject('🎉 Congratulations! Your Job Application Has Been Accepted')
-            ->greeting('Dear ' . $notifiable->name . ',')
-            ->line('We are pleased to inform you that your application for the position of **' . $this->application->job->title . '** has been accepted.')
+            ->greeting('Dear '.$notifiable->name.',')
+            ->line('We are pleased to inform you that your application for the position of **'.$this->application->job->title.'** has been accepted.')
             ->line('Our team was impressed with your profile and we believe you could be a great fit for this role.')
             ->line('---------')
             ->line('We will contact you shortly with the next steps.')
             ->salutation('Best regards,')
-            ->salutation(config('app.name') . ' Team');
+            ->salutation(config('app.name').' Team');
     }
 
     /**

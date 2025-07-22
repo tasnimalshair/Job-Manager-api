@@ -16,7 +16,7 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        if (!in_array(Auth::user()->role, $roles)) {
+        if (! in_array(Auth::user()->role, $roles)) {
             abort(403, 'You are not allowed to access this area.');
         }
 
