@@ -1,61 +1,198 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Job Manager API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel 12 RESTful API for job listings and applications. Users can browse and apply for jobs, while admins can manage job posts and application statuses.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- 🔐 User authentication (register/login)
+- 🧑‍💼 Role-based access (Admin & User)
+- 📋 Job CRUD (Admin only)
+- 📩 Apply to jobs (User only, one-time per job)
+- ✉️ Email notification when application is accepted
+- 🧾 Application logging
+- ✅ Feature Testing and unit testing
+- 📖 API Documentation included
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ⚙️ Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP 8.2+
+- Laravel 12
+- MySQL
+- Composer
+- Gmail SMTP for email testing
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Installation & Setup
 
-## Laravel Sponsors
+```bash
+git clone https://github.com/your-username/job-manager-api.git
+cd job-manager-api
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+composer install
+cp .env.example .env
+php artisan key:generate
 
-### Premium Partners
+``` 
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Configure .env:
+Set your DB credentials and email settings:
 
-## Contributing
+DB_DATABASE=job_manager
+DB_USERNAME=root
+DB_PASSWORD=
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=tasnimjalshair2002@gmail.com
+MAIL_PASSWORD=uheghlynzmhvfgzr
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=tasnimjalshair2002@gmail.com
+MAIL_FROM_NAME="Job Manager"
 
-## Code of Conduct
+### Then run:
+``` 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+php artisan migrate --seed
+php artisan serve
 
-## Security Vulnerabilities
+```
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📌 API Endpoints
 
-## License
+### 🔐 Auth
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Method | Endpoint      | Description        |
+|--------|---------------|--------------------|
+| POST   | /api/register | Register new user  |
+| POST   | /api/login    | Login user         |
+
+---
+
+### 🧑‍💼 Admin - Jobs Management
+
+| Method | Endpoint                      | Description                  |
+|--------|-------------------------------|------------------------------|
+| GET    | /api/admin/jobs               | List all jobs                |
+| GET    | /api/admin/jobs/{job}         | Show specific job            |
+| POST   | /api/admin/jobs               | Create a job                 |
+| PUT    | /api/admin/jobs/{job}         | Update job                   |
+| DELETE | /api/admin/jobs/{job}         | Delete job                   |
+| GET    | /api/admin/jobs/toggleStatus/{job} | View current status         |
+| POST   | /api/admin/jobs/toggleStatus/{job} | Toggle job status (active/inactive) |
+
+---
+
+### 🗃️ Admin - Applications Management
+
+| Method | Endpoint                                      | Description                          |
+|--------|-----------------------------------------------|--------------------------------------|
+| GET    | /api/admin/applications                       | View all applications                |
+| GET    | /api/admin/jobs/{id}/applications             | Filter applications by job ID        |
+| GET    | /api/admin/applications/{application}/accept  | Accept an application (send email)   |
+
+---
+
+### 👩‍💻 User - Job Browsing
+
+| Method | Endpoint                | Description               |
+|--------|-------------------------|---------------------------|
+| GET    | /api/user/jobs          | List all active jobs      |
+| GET    | /api/user/jobs/{job}    | Show specific job         |
+| GET    | /api/user/jobs/filter   | Filter jobs               |
+
+---
+
+### 📝 User - Job Applications
+
+| Method | Endpoint                     | Description               |
+|--------|------------------------------|---------------------------|
+| POST   | /api/user/jobs/{job}/apply   | Apply for a job           |
+| GET    | /api/user/applications       | List my applications      |
+| GET    | /api/user/applications/{id}  | View specific application |
+| DELETE | /api/user/applications/{id}  | Delete application        |
+
+
+---
+
+## 🧪 Running Tests
+php artisan test
+
+---
+
+## 🧾 Logs
+
+Every job update is logged for audit purposes.
+Example (in storage/logs/application.log):
+[2025-07-21 12:13:39] local.INFO: Status updated successfully! {"old_status":"inactive","updated_status":"active"}
+
+---
+
+## 📖 API Documentation
+
+You can explore and test all endpoints using the Postman collection provided.
+
+### 🧭 Access it in two ways:
+1. 🌐 **Online via Postman link**:  
+   [Open in Postman Workspace](https://galactic-resonance-381977-1.postman.co/workspace/Laravel-APIs~1d8bfc4e-3141-40de-a5cf-547e35bad429/collection/17630419-aeff1ccf-290d-446d-bc40-15457003ddff?action=share&creator=17630419&active-environment=17630419-7b4af655-c6aa-4e4e-9242-d268c41ee398)
+
+2. 📁 **Locally in the project**:  
+   Navigate to `docs/Job Manager.postman_collection.json` and import it manually into Postman.
+
+---
+
+## 🖼️ Screenshots
+
+### 🔐 Postman Token Variables
+
+Used to authorize admin/user requests easily in the collection.
+<img width="1366" height="768" alt="token_variables" src="https://github.com/user-attachments/assets/fb3cdf0d-d449-4534-a26f-343d88a72201" />
+
+---
+
+### ✉️ Email Notification Preview
+
+Example email sent to a user when their job application is accepted.
+<img width="788" height="526" alt="email" src="https://github.com/user-attachments/assets/a0e5412c-3baa-4d01-999b-b43020fc816b" />
+
+---
+
+### ✅ Test Results
+
+Snapshot from running `php artisan test` showing successful feature tests.
+<img width="1366" height="768" alt="test_result" src="https://github.com/user-attachments/assets/52b8be1b-2e6a-45d6-8c2a-bbbf5593e59e" />
+
+---
+
+## 📬 Contact
+
+Developed by Tasnim Alshair
+📫 Email: tasnimjalshair2002@gmail.com
+🔗 GitHub: https://github.com/tasnimalshair
+🔗 LinkedIn: https://www.linkedin.com/in/tasnim-alshair-aa11a4266/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
