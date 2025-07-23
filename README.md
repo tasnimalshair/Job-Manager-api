@@ -129,8 +129,9 @@ php artisan test
 
 Every job update is logged for audit purposes.
 Example (in storage/logs/application.log):
+```
 [2025-07-21 12:13:39] local.INFO: Status updated successfully! {"old_status":"inactive","updated_status":"active"}
-
+```
 ---
 
 ## 📖 API Documentation
@@ -171,11 +172,12 @@ Snapshot from running `php artisan test` showing successful feature tests.
 
 ## 📬 Contact
 
-Developed by Tasnim Alshair
-```
-📫 Email: tasnimjalshair2002@gmail.com
-🔗 GitHub: https://github.com/tasnimalshair
-🔗 LinkedIn: https://www.linkedin.com/in/tasnim-alshair-aa11a4266/
+**Developed by Tasnim Alshair**
+
+📫 **Email:** [tasnimjalshair2002@gmail.com](mailto:tasnimjalshair2002@gmail.com)  
+🔗 **GitHub:** [github.com/tasnimalshair](https://github.com/tasnimalshair)  
+🔗 **LinkedIn:** [linkedin.com/in/tasnim-alshair-aa11a4266](https://www.linkedin.com/in/tasnim-alshair-aa11a4266/)
+
 
 
 
