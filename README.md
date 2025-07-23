@@ -176,7 +176,11 @@ Snapshot from running `php artisan test` showing successful feature tests.
 
 📫 **Email:** [tasnimjalshair2002@gmail.com](mailto:tasnimjalshair2002@gmail.com)  
 🔗 **GitHub:** [github.com/tasnimalshair](https://github.com/tasnimalshair)  
-🔗 **LinkedIn:** [linkedin.com/in/tasnim-alshair-aa11a4266](https://www.linkedin.com/in/tasnim-alshair-aa11a4266/)
+🔗 **LinkedIn:** [linkedin.com/in/tasnim-alshair-aa11a4266](https://www.linkedin.com/in/tasnim-alshair-aa11a4266/)  
+📸 **Instagram:** [instagram.com/dev.tasnimalshair](https://www.instagram.com/dev.tasnimalshair?igsh=ejVweGR1Y2J6aDBi)
+
+Feel free to reach out for collaborations, questions, or just to say hi!
+
 
 
 
