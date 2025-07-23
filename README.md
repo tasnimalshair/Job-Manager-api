@@ -41,7 +41,7 @@ php artisan key:generate
 
 ### Configure .env:
 Set your DB credentials and email settings:
-
+```env
 DB_DATABASE=job_manager
 DB_USERNAME=root
 DB_PASSWORD=
@@ -54,10 +54,9 @@ MAIL_PASSWORD=uheghlynzmhvfgzr
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS=tasnimjalshair2002@gmail.com
 MAIL_FROM_NAME="Job Manager"
-
+```
 ### Then run:
 ``` 
-
 php artisan migrate --seed
 php artisan serve
 
@@ -173,6 +172,7 @@ Snapshot from running `php artisan test` showing successful feature tests.
 ## 📬 Contact
 
 Developed by Tasnim Alshair
+```
 📫 Email: tasnimjalshair2002@gmail.com
 🔗 GitHub: https://github.com/tasnimalshair
 🔗 LinkedIn: https://www.linkedin.com/in/tasnim-alshair-aa11a4266/
